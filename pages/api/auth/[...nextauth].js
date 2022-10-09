@@ -1,13 +1,81 @@
 import NextAuth from 'next-auth';
 import SpotifyProvider from 'next-auth/providers/spotify';
+import spotifyApi, { LOGIN_URL } from '../../../lib/spotify';
+
+// custom method for refreshing token
+const refreshAccessToken = async (token) => {
+  try {
+    spotifyApi.setAccessToken(token.accessToken);
+    spotifyApi.setRefreshToken(token.refreshToken);
+
+    // destructure the body from the response
+    const { body: refreshedToken } = await spotifyApi.refreshAccessToken();
+    console.log('REFRESHED TOKEN IS ', refreshedToken);
+
+    return {
+      ...token,
+      accessToken: refreshedToken.access_token,
+      accessTokenExpires: Date.now() + refreshedToken.expires_in * 1000, // = 1 hour
+      refreshToken: refreshedToken.refresh_token ?? token.refreshToken,
+    };
+  } catch (err) {
+    console.error(err);
+
+    return {
+      ...token,
+      error: 'RefreshAccessTokenError',
+    };
+  }
+};
+
 export const authOptions = {
   // Configure one or more authentication providers
   providers: [
     SpotifyProvider({
       clientId: process.env.GITHUB_ID,
       clientSecret: process.env.GITHUB_SECRET,
+      authorization: LOGIN_URL,
     }),
     // ...add more providers here
   ],
+
+  secret: process.env.JWT_SECRET, // JWT secret from .env file
+  pages: {
+    signIn: '/login', // This identifies the custom built login page for the app.
+  },
+  callbacks: {
+    async jwt({ token, account, user }) {
+      // when we initially signIn
+      if (account && user) {
+        return {
+          ...token,
+          accessToken: account.access_token,
+          refreshToken: account.refresh_token,
+          username: account.providerAccountId,
+          accessTokenExpires: account.expires_at * 1000, // handling expiry times in milliseconds
+        };
+      }
+
+      // if the token has not expired return previous token
+      if (Date.now() < token.accessTokenExpires) {
+        console.log('EXISTING ACCESS TOKEN IS VALID');
+        return token;
+      }
+
+      // for scenarios where the access has expired.
+      console.log('ACCESS TOKEN HAS EXPIRED, REFRESHING...');
+      // create a special method (refreshAccessToken) to handle token refresh.
+      return await refreshAccessToken(token);
+    },
+
+    // setup session for client
+    async session({ session, token }) {
+      session.user.accessToken = token.accessToken;
+      session.user.refreshToken = token.refreshToken;
+      session.user.username = token.username;
+
+      return session;
+    },
+  },
 };
 export default NextAuth(authOptions);
