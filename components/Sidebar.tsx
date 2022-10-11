@@ -10,6 +10,8 @@ import {
 } from '@heroicons/react/24/outline';
 import { signOut, useSession } from 'next-auth/react';
 import useSpotify from '../hooks/useSpotify';
+import { useRecoilState } from 'recoil';
+import { playlistIdState } from '../atoms/playlistAtom';
 
 // interface for playlist
 interface PlayList {
@@ -31,9 +33,7 @@ export default function Sidebar({}: Props) {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState<any>([]);
-  const [playlistID, setPlaylistID] = useState<React.Key | null | undefined>(
-    null,
-  );
+  const [playlistID, setPlaylistID] = useRecoilState(playlistIdState);
 
   console.log('you picked this playlist ===> ' + playlistID);
 
