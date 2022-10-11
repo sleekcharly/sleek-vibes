@@ -1,6 +1,7 @@
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import Sidebar from '../components/Sidebar';
+import Center from '../components/Center';
 
 const Home: NextPage = () => {
   return (
@@ -11,11 +12,12 @@ const Home: NextPage = () => {
       </Head>
 
       {/* main section */}
-      <main>
+      <main className="flex ">
         {/* Sidebar */}
         <Sidebar />
 
         {/* Center */}
+        <Center />
       </main>
 
       <div>{/* Player */}</div>
