@@ -33,7 +33,7 @@ export default function Sidebar({}: Props) {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [playlists, setPlaylists] = useState<any>([]);
-  const [playlistID, setPlaylistID] = useRecoilState(playlistIdState);
+  const [playlistID, setPlaylistID] = useRecoilState<any>(playlistIdState);
 
   console.log('you picked this playlist ===> ' + playlistID);
 

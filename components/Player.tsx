@@ -24,11 +24,11 @@ function Player({}: Props) {
   const spotifyApi = useSpotify();
   const { data: session, status } = useSession();
   const [currentTrackId, setCurrentTrackId] =
-    useRecoilState(currentTrackIdState);
+    useRecoilState<any>(currentTrackIdState);
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
   const [volume, setVolume] = useState(50);
 
-  const songInfo = useSongInfo();
+  const songInfo: any = useSongInfo();
 
   const fetchCurrentSong = () => {
     if (!songInfo) {

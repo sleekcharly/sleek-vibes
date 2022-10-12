@@ -21,7 +21,7 @@ type Props = {
 function Song({ order, track }: Props) {
   const spotifyApi = useSpotify();
   const [currentTrackId, setCurrentTrackId] =
-    useRecoilState(currentTrackIdState);
+    useRecoilState<any>(currentTrackIdState);
   const [isPlaying, setIsPlaying] = useRecoilState(isPlayingState);
 
   //    fucntion to play song
