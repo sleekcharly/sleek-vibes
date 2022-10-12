@@ -57,6 +57,30 @@ function Player({}: Props) {
     });
   };
 
+  const handleSkipNext = () => {
+    spotifyApi.skipToNext().then(
+      function () {
+        console.log('Skip to next');
+      },
+      function (err) {
+        //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+        console.log('Something went wrong!', err);
+      },
+    );
+  };
+
+  const handleSkipPrevious = () => {
+    spotifyApi.skipToPrevious().then(
+      function () {
+        console.log('Skip to previous');
+      },
+      function (err) {
+        //if the user making the request is non-premium, a 403 FORBIDDEN response code will be returned
+        console.log('Something went wrong!', err);
+      },
+    );
+  };
+
   useEffect(() => {
     if (spotifyApi.getAccessToken() && !currentTrackId) {
       // fetch the song info
@@ -97,7 +121,7 @@ function Player({}: Props) {
       <div className="flex items-center justify-evenly">
         <ArrowsRightLeftIcon className="button" />
         <BackwardIcon
-          onClick={() => spotifyApi.skipToPrevious()}
+          // onClick={() => handleSkipPrevious()} not working
           className="button"
         />
 
@@ -114,7 +138,7 @@ function Player({}: Props) {
         )}
 
         <ForwardIcon
-          onClick={() => spotifyApi.skipToNext()}
+          // onClick={() => handleSkipNext()} Not working!!
           className="button"
         />
         <ArrowUturnLeftIcon className="button" />
