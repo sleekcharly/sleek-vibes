@@ -1,28 +1,17 @@
-# Next.js + Tailwind CSS Example
+# Sleek Vibes App
 
-This example shows how to use [Tailwind CSS](https://tailwindcss.com/) [(v3.0)](https://tailwindcss.com/blog/tailwindcss-v3) with Next.js. It follows the steps outlined in the official [Tailwind docs](https://tailwindcss.com/docs/guides/nextjs).
+This app is a miniature spotify wrapper cotaining a user's playlist and play/pause control. This app was created using the Spotify developers API. The entire build was done with React, Next JS, Typescript, tailwindcss, and Recoil.
 
-## Deploy your own
+## Side Note
 
-Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) or preview live with [StackBlitz](https://stackblitz.com/github/vercel/next.js/tree/canary/examples/with-tailwindcss)
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-tailwindcss&project-name=with-tailwindcss&repository-name=with-tailwindcss)
+The Next and Previous track buttons are not working due to an issue with the Spotify API. Spotify may probably have fixed the bug by the time you are viewing this post.
 
 ## How to use
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+Ensure that you have an account with spotify.
 
-```bash
-npx create-next-app --example with-tailwindcss with-tailwindcss-app
-```
+Open your spotify app either on web, desktop or mobile an play any track to keep the account active.
 
-```bash
-yarn create next-app --example with-tailwindcss with-tailwindcss-app
-```
+login on the sleek Vibes app select your favourite playlists to listen.
 
-```bash
-pnpm create next-app --example with-tailwindcss with-tailwindcss-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-# sleek-vibes
+### Enjoy
