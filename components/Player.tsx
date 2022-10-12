@@ -47,9 +47,11 @@ function Player({}: Props) {
     spotifyApi.getMyCurrentPlaybackState().then((data) => {
       if (data.body.is_playing) {
         spotifyApi.pause();
+        console.log('song paused');
         setIsPlaying(false);
       } else {
         spotifyApi.play();
+        console.log('song played');
         setIsPlaying(true);
       }
     });
@@ -102,12 +104,12 @@ function Player({}: Props) {
         {isPlaying ? (
           <PauseIcon
             className="button w-10 h-10"
-            onClick={() => handlePlayPause}
+            onClick={() => handlePlayPause()}
           />
         ) : (
           <PlayIcon
             className="button w-10 h-10"
-            onClick={() => handlePlayPause}
+            onClick={() => handlePlayPause()}
           />
         )}
 
