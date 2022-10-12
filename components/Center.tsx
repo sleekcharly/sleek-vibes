@@ -55,7 +55,7 @@ function Center({}: Props) {
         >
           <div className="relative w-10 h-10">
             <Image
-              src={session?.user?.image}
+              src={`${session?.user?.image}`}
               alt="user image"
               layout="fill"
               className="rounded-full"
