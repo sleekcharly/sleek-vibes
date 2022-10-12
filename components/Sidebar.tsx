@@ -46,16 +46,8 @@ export default function Sidebar({}: Props) {
   }, [session, spotifyApi]);
 
   return (
-    <div className="text-gray-500 p-5 text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide">
+    <div className="text-gray-500 p-5 text-xs lg:text-sm border-r border-gray-900 overflow-y-scroll h-screen scrollbar-hide sm:max-w-[12rem] lg:max-w-[15rem] hidden md:inline-flex pb-36">
       <div className="space-y-4">
-        <button
-          className=" flex items-center space-x-2 hover:text-white"
-          onClick={() => signOut()}
-        >
-          <WindowIcon className="h-5 w-5" />
-          <p>Log out</p>
-        </button>
-
         <button className=" flex items-center space-x-2 hover:text-white">
           <HomeIcon className="h-5 w-5" />
           <p>Home</p>
@@ -78,12 +70,12 @@ export default function Sidebar({}: Props) {
           <p>Create Playlist</p>
         </button>
 
-        <button className=" flex items-center space-x-2 hover:text-white">
+        <button className=" flex items-center text-blue-500 space-x-2 hover:text-white">
           <HeartIcon className="h-5 w-5" />
           <p>Liked Songs</p>
         </button>
 
-        <button className=" flex items-center space-x-2 hover:text-white">
+        <button className=" flex items-center text-green-500 space-x-2 hover:text-white">
           <RssIcon className="h-5 w-5" />
           <p>Your episodes</p>
         </button>
